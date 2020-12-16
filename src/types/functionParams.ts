@@ -2,7 +2,8 @@ export interface functionParams{
     photoUrl:string|null,
     buttonsInRow?:number,
     keyboard: KeyboardTextTypes[],
-    text:string
+    text:string,
+    buttonsColor?:string
 }
 
 export interface KeyboardTextTypes{

@@ -41,7 +41,7 @@ export interface RequestMessageViber{
     receiver: string,
     type: string,
     sender:any,
-    keyboard: KeyboardViber | null,
+    keyboard?: KeyboardViber | null,
     text:string,
     min_api_version:number ,
     media?: string | null
