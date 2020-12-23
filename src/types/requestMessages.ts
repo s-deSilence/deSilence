@@ -10,14 +10,17 @@ interface KeyboardTelegram{
     resize_keyboard: boolean,
     one_time_keyboard: boolean,
     remove_keyboard: boolean,
-    keyboard: null | KeyboardTextTypesTelegram[][]
+    keyboard?: null | KeyboardTextTypesTelegram[][],
+    inline_keyboard?: KeyboardTextTypesTelegram
 }
 
 interface KeyboardTextTypesTelegram{
-    id: number,
+    id?: number,
     text:string,
     request_contact?: boolean,
-    request_location?: boolean
+    request_location?: boolean,
+    url?:string,
+    callback_data?:string
 }
 
 export interface RequestMessageFacebook{
@@ -26,8 +29,16 @@ export interface RequestMessageFacebook{
         id:string
     },
     message:{
-        text: string,
-        quick_replies?:QuickReplies[]
+        text?: string,
+        quick_replies?:QuickReplies[],
+        attachment?:{
+            type:string,
+            payload:{
+                template_type:string,
+                text:string,
+                buttons:{ type:string, title:string , url?:string, payload?:string }[]
+            }
+        }
     }
 }
 
@@ -42,9 +53,16 @@ export interface RequestMessageViber{
     type: string,
     sender:any,
     keyboard?: KeyboardViber | null,
-    text:string,
+    text?:string,
     min_api_version:number ,
-    media?: string | null
+    media?: string | null,
+    rich_media?:{
+        Type:string,
+        ButtonsGroupColumns:number,
+        ButtonsGroupRows:number,
+        BgColor:string,
+        Buttons: KeyboardViberTextTypes[]
+    }
 }
 
 interface KeyboardViber{

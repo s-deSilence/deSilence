@@ -7,10 +7,19 @@ export async function TelegramSendApi( token:string, chatId:string, params:funct
         let subarray = [];
         let size = params.buttonsInRow || 1;
         for (let i = 0; i <Math.ceil( params.keyboard.length/ size ); i++){
-            subarray[i] = params.keyboard.slice(( i*size ), (i*size) + size) ;
+            subarray[i] = params.keyboard.slice(( i*size ), (i*size) + size).map( k => {
+                return params.inlineButtons 
+                    ?   
+                        k.url
+                        ?
+                            { text: k.text, url: k.url }
+                        :
+                            { text: k.text, callback_data: k.text }
+                    :  k
+            });
         }
         return {
-            keyboard: subarray,
+            [ params.inlineButtons ? 'inline_keyboard' : 'keyboard' ]: subarray,
             resize_keyboard: true,
             one_time_keyboard: true,
             remove_keyboard: true

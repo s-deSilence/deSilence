@@ -3,12 +3,14 @@ export interface functionParams{
     buttonsInRow?:number,
     keyboard: KeyboardTextTypes[],
     text:string,
-    buttonsColor?:string
+    buttonsColor?:string,
+    inlineButtons?:boolean
 }
 
 export interface KeyboardTextTypes{
     id: number,
     text:string,
     request_contact?: boolean,
-    request_location?: boolean
+    request_location?: boolean,
+    url?:string
 }
